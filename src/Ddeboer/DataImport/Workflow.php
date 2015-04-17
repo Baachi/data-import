@@ -16,7 +16,7 @@ use Psr\Log\NullLogger;
  *
  * @author David de Boer <david@ddeboer.nl>
  */
-final class Workflow implements WorkflowInterface
+class Workflow implements WorkflowInterface
 {
     /**
      * Reader
@@ -117,11 +117,11 @@ final class Workflow implements WorkflowInterface
         }
 
         // Read all items
-        foreach ($this->reader as $item) {
+        foreach ($this->reader as $rowIndex => $item) {
             try {
                 foreach (clone $this->steps as $step) {
-                    if (!$step->process($item)) {
-                        continue;
+                    if ($step->process($item) === false) {
+                        continue 2;
                     }
                 }
 
@@ -137,7 +137,7 @@ final class Workflow implements WorkflowInterface
                     throw $e;
                 }
 
-                $exceptions->attach($e);
+                $exceptions->attach($e,$rowIndex);
                 $this->logger->error($e->getMessage());
             }
 

@@ -19,12 +19,4 @@ class CallbackFilterTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($filter->filter(array('foobar')));
     }
-
-    /**
-     * @expectedException RuntimeException
-     */
-    public function testFilterWithNotCallableArgument()
-    {
-        $filter = new CallbackFilter('string');
-    }
 }

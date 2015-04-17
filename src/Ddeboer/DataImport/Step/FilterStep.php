@@ -11,7 +11,7 @@ class FilterStep implements StepInterface
     /**
      * @var \SplPriorityQueue
      */
-    private $filters;
+    protected $filters;
 
     public function __construct()
     {

@@ -20,7 +20,7 @@ class ValidatorStep implements PriorityStepInterface
 
     private $line = 1;
 
-    private $validator;
+    protected $validator;
 
     public function __construct(Validator $validator)
     {

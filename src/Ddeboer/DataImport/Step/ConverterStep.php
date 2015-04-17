@@ -9,7 +9,7 @@ use Ddeboer\DataImport\ItemConverter\ItemConverterInterface;
  */
 class ConverterStep implements StepInterface
 {
-    private $converters;
+    protected $converters;
 
     public function __construct(array $converters = [])
     {
